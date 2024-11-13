@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from sqlalchemy import Column, String, INTEGER, BIGINT, ForeignKey, DATE, Enum
 from app.api.v1.db import Settings
 from typing import Optional, Union
-from datetime import date
 from enum import Enum as PyEnum
 
 from sqlalchemy.orm import relationship
@@ -19,7 +18,7 @@ class CardStatus(PyEnum):
 class Library(BASE):
     __tablename__ = "libraries"
     institution_id: int = Column(BIGINT, primary_key=True)
-    date_of_establishment: date = Column(DATE, nullable=False)
+    date_of_establishment: str = Column(DATE, nullable=False)
     institution_name: Union[str, None] = Column(String(100), nullable=False, unique=True)
     location: Union[str, None] = Column(String(120), nullable=True)
 
@@ -41,7 +40,7 @@ class LibraryCard(BASE):
     __tablename__ = "library_card"
     library_card_id: int = Column(BIGINT, primary_key=True)
     barcode: int = Column(BIGINT, nullable=False, unique=True)
-    issue_date: date = Column(DATE, nullable=False)
-    date_of_expiration: date = Column(DATE, nullable=False)
+    issue_date: str = Column(DATE, nullable=False)
+    date_of_expiration: str = Column(DATE, nullable=False)
     status: str = Column(Enum(CardStatus), default=CardStatus.VALID)
 
