@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from sqlalchemy import Column, String, BIGINT, Enum, DATE, INTEGER, FLOAT, ForeignKey
-from database.database import Settings
+from app.api.v1.db import Settings
 from typing import Optional, Union
 from enum import Enum as PyEnum
 from datetime import date

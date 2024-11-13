@@ -1,2 +1,2 @@
 from .config import Config
-from .utils import calculate_expiration_date
+from .utils import calculate_expiration_date, lifespan

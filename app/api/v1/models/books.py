@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from sqlalchemy import Column, String, INTEGER, BigInteger, Enum, ForeignKey
-from database.database import Settings
+from app.api.v1.db import Settings
 from typing import Optional, Union
 from enum import Enum as PyEnum
 

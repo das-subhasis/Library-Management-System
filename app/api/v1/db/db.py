@@ -1,19 +1,16 @@
 from fastapi import HTTPException, status, Depends
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import DatabaseError
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from utils.config import Config
-# from core.exceptions import DBExceptions
+from app.api.v1.core import Config
 from typing import Annotated
 
 
 class Settings:
     SQLALCHEMY_DATABASE_URL = Config.SQL_ALCHEMY_DATABASE_URL
 
-    engine = create_async_engine(SQLALCHEMY_DATABASE_URL)
+    engine = create_async_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
-    AsyncSessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine, class_=AsyncSession)
+    AsyncSessionLocal = async_sessionmaker(autoflush=False, autocommit=False, bind=engine)
 
     BASE = declarative_base()
 
