@@ -1,7 +1,8 @@
 from datetime import date, timedelta
 from fastapi import FastAPI
-from Backend.app.api.v1.db import Settings
+from Backend.api.v1.db import Settings
 from contextlib import asynccontextmanager
+from typing import List
 import random
 
 
@@ -17,4 +18,9 @@ def calculate_expiration_date(current_date: date):
 
 
 def generate_id():
-    return random.randint(10**12, 10**13 - 1)
+    return random.randint(10 ** 12, 10 ** 13 - 1)
+
+
+def generate_batch(data: List, batch_size: int = 5):
+    for i in range(0, len(data), batch_size):
+        yield data[i:i + batch_size]

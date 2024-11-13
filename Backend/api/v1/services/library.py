@@ -71,26 +71,22 @@ async def search_library_by_location(db: DB_Session, location: str):
 
 
 async def add_library(db: DB_Session, library_data: LibraryCreate):
-    try:
-        exists = await db.scalars(select(Library).where(
-            and_(
-                Library.institution_name == library_data.institution_name,
-                Library.location == library_data.location
-            )))
-        if exists.all():
-            raise HTTPException(
-                status_code=status.HTTP_409_CONFLICT,
-                detail="Library already exists"
-            )
+    exists = await db.scalars(select(Library).where(
+        and_(
+            Library.institution_name == library_data.institution_name,
+            Library.location == library_data.location
+        )))
+    if exists.all():
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Library already exists"
+        )
 
-        new_library = Library(**library_data.model_dump())
-        db.add()
-        await db.commit()
-        await db.refresh(new_library)
-        return new_library
-
-    except Exception as e:
-        print(e)
+    new_library = Library(**library_data.model_dump())
+    db.add()
+    await db.commit()
+    await db.refresh(new_library)
+    return new_library
 
 
 async def bulk_add_libraries(db: DB_Session, libraries: List[LibraryCreate]):
