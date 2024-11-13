@@ -2,6 +2,8 @@ from datetime import datetime, date, timedelta
 from fastapi import FastAPI
 from app.api.v1.db import Settings
 from contextlib import asynccontextmanager
+import random
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -9,6 +11,10 @@ async def lifespan(app: FastAPI):
     yield
     print('api is shutting down....')
 
+
 def calculate_expiration_date(current_date: date):
     return current_date + timedelta(days=365)
 
+
+def generate_institution_id():
+    return random.randint(10**12, 10**13 - 1)
