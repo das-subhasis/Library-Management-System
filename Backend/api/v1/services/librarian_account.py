@@ -1,8 +1,8 @@
 from fastapi import HTTPException, status
 from sqlalchemy import select, and_
-from Backend.app.api.v1.models import Librarian
-from Backend.app.api.v1.schemas import LibrarianCreate, LibrarianSearch
-from Backend.app.api.v1.db import DB_Session
+from Backend.api.v1.models import Librarian
+from Backend.api.v1.schemas import LibrarianCreate, LibrarianSearch
+from Backend.api.v1.db import DB_Session
 
 
 async def create_librarian_account(db: DB_Session, librarian_data: LibrarianCreate):
