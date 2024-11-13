@@ -4,7 +4,7 @@ from sqlalchemy.exc import DatabaseError
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.ext.declarative import declarative_base
 from utils.config import Config
-# from utils.exceptions import DBExceptions
+# from core.exceptions import DBExceptions
 from typing import Annotated
 
 
