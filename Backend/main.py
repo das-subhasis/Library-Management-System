@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from Backend.app.api.v1.core import lifespan
-from Backend.app.api.v1 import routes
+from Backend.api.v1.core import lifespan
+from Backend.api.v1 import routes
 
 app = FastAPI(
     title="Library Management API (ver. 1.0)",
