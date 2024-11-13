@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, BIGINT, DATE, INTEGER, FLOAT, ForeignKey
-from Backend.app.api.v1.core import generate_id
-from Backend.app.api.v1.db import Settings
+from Backend.api.v1.core import generate_id
+from Backend.api.v1.db import Settings
 from datetime import date
 
 from sqlalchemy.orm import relationship

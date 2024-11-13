@@ -1,5 +1,5 @@
 from sqlalchemy import Column, BIGINT, Enum, DATE, ForeignKey
-from Backend.app.api.v1.db import Settings
+from Backend.api.v1.db import Settings
 from enum import Enum as PyEnum
 from datetime import date
 

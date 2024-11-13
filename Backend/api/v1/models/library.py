@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, BIGINT, ForeignKey, DATE, Enum
 from enum import Enum as PyEnum
-from Backend.app.api.v1.db import Settings
-from Backend.app.api.v1.core import generate_id
+from Backend.api.v1.db import Settings
+from Backend.api.v1.core import generate_id
 
 from sqlalchemy.orm import relationship
 
