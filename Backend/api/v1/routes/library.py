@@ -1,10 +1,12 @@
+from typing import List
+
 from fastapi import APIRouter
 from fastapi.params import Depends
-from Backend.app.api.v1.models import Library
-from Backend.app.api.v1 import services
+from Backend.api.v1.models import Library
+from Backend.api.v1 import services
 
 router = APIRouter(
-    prefix='/library',
+    prefix='/v1/library',
     tags=['library']
 )
 
@@ -18,6 +20,9 @@ async def get_libraries(library: Library = Depends(services.search_all_libraries
 async def get_libraries_by_name_and_location(library: Library = Depends(services.search_library_by_name_and_location)):
     return library
 
+@router.get('/search/q')
+async def get_libraries_by_name_and_location(library: List[Library] = Depends(services.search_libraries)):
+    return library
 
 @router.get('/id/{institution_id}')
 async def get_institution_by_id(library: Library = Depends(services.search_library_by_id)):
