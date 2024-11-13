@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.api.v1.core import lifespan
-from app.api.v1.routes import LibraryRoute
+from Backend.app.api.v1.core import lifespan
+from Backend.app.api.v1 import routes
 
 app = FastAPI(
     title="Library Management API (ver. 1.0)",
@@ -8,7 +8,8 @@ app = FastAPI(
 )
 
 ############################################################
-app.include_router(LibraryRoute)
+app.include_router(routes.LibraryRoute)
+app.include_router(routes.AdminRoute)
 ############################################################
 
 

@@ -8,3 +8,8 @@ class LibraryCreate(BaseModel):
 
     class Config:
         orm_mode = True
+
+class LibrarySearch(BaseModel):
+    institution_id: Optional[int] = None
+    institution_name: str
+    location: str

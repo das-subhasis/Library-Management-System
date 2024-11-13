@@ -1,7 +1,7 @@
-from fastapi import HTTPException, status, Depends
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from app.api.v1.core import Config
+from Backend.app.api.v1.core import Config
 from typing import Annotated
 
 

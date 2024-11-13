@@ -1,6 +1,6 @@
-from datetime import datetime, date, timedelta
+from datetime import date, timedelta
 from fastapi import FastAPI
-from app.api.v1.db import Settings
+from Backend.app.api.v1.db import Settings
 from contextlib import asynccontextmanager
 import random
 
@@ -16,5 +16,5 @@ def calculate_expiration_date(current_date: date):
     return current_date + timedelta(days=365)
 
 
-def generate_institution_id():
+def generate_id():
     return random.randint(10**12, 10**13 - 1)
