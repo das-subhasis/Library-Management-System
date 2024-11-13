@@ -1,8 +1,9 @@
 from pydantic import BaseModel
 from sqlalchemy import Column, String, INTEGER, BIGINT, ForeignKey, DATE, Enum
-from app.api.v1.db import Settings
 from typing import Optional, Union
 from enum import Enum as PyEnum
+from app.api.v1.db import Settings
+from app.api.v1.core import generate_institution_id
 
 from sqlalchemy.orm import relationship
 
@@ -17,9 +18,9 @@ class CardStatus(PyEnum):
 
 class Library(BASE):
     __tablename__ = "libraries"
-    institution_id: int = Column(BIGINT, primary_key=True)
+    institution_id: int = Column(BIGINT, primary_key=True, default=generate_institution_id)
     date_of_establishment: str = Column(DATE, nullable=False)
-    institution_name: Union[str, None] = Column(String(100), nullable=False, unique=True)
+    institution_name: Union[str, None] = Column(String(100), nullable=False)
     location: Union[str, None] = Column(String(120), nullable=True)
 
     shelves = relationship("Shelf", back_populates="library")
