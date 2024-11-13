@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
-from Backend.app.api.v1 import services, models
-
+from Backend.api.v1 import services, models
+from typing import List, Union, Dict
 router = APIRouter(
-    prefix='/admin'
+    prefix='/v1/admin'
 )
 
 # Library routes
@@ -11,7 +11,11 @@ async def create_new_library(library: models.Library = Depends(services.add_libr
     return library
 
 @router.post('/library/bulk_create')
-async def bulk_create_libraries(response: str = Depends(services.bulk_add_libraries)):
+async def bulk_create_libraries(response: Dict[str, Union[str, List]] = Depends(services.bulk_add_libraries)):
+    return response
+
+@router.delete('/library/')
+async def bulk_create_libraries(response: Dict[str, str] = Depends(services.remove_library)):
     return response
 
 
